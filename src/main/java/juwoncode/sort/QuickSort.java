@@ -20,11 +20,6 @@ public class QuickSort {
 
     /**
      * 왼쪽 피벗을 기준으로 퀵정렬 알고리즘을 사용하여 오름차순으로 정렬한다.
-     * <pre>
-     *     1. 파티션 메소드를 호출하여 기준이 되는 피벗 값을 찾는다.
-     *     2. 피벗 인덱스를 기준으로 왼쪽 배열으로 재귀호출하여 정렬한다.
-     *     3. 피벗 인덱스를 기준으로 오른쪽 배열으로 재귀호출하여 정렬한다.
-     * </pre>
      * @param array
      *      정렬할 배열
      * @param low
@@ -34,21 +29,19 @@ public class QuickSort {
      */
     private static void leftPivotSort(int[] array, int low, int high) {
         if (low < high) {
+            // 배열의 분할 기준이 되는 피벗을 찾는다.
             int pivot = partition(array, low, high);
+
+            // 피벗을 기준으로 왼쪽 배열을 정렬한다.
             leftPivotSort(array, low, pivot - 1);
+
+            // 피벗을 기준으로 오른쪽 배열을 정렬한다.
             leftPivotSort(array, pivot + 1, high);
         }
     }
 
     /**
      * 조건에 따라서 값을 교환하고 피벗값을 반환한다.
-     * <pre>
-     *     1. 맨 왼쪽값을 피벗으로 설정한다.
-     *     2. 피벗과 큰 값을 비교하여 왼쪽으로 이동시킨다.
-     *     3. 피벗과 작은 값을 비교하여 오른쪽으로 이동시킨다.
-     *     4. 큰 값과 작은 값을 교환하고 피벗과 작은 값을 교환한다.
-     *     5. 피벗으로 사용할 작은 값을 반환한다.
-     * </pre>
      * @param array
      *      정렬할 배열
      * @param left
@@ -59,23 +52,27 @@ public class QuickSort {
      *      최종 피벗 인덱스
      */
     private static int partition(int[] array, int left, int right) {
-        int low = left, high = right, pivot = array[left];
+        int lPointer = left, rPointer = right, pivot = array[left];
 
-        while (low < high) {
-            while (pivot < array[high] && low < high) {
-                high--;
+        while (lPointer < rPointer) {
+            // 피벗값이 오른쪽 포인터보다 작고, 왼쪽 포인터가 오른쪽 포인터보다 작을경우 감소한다.
+            while (pivot < array[rPointer] && lPointer < rPointer) {
+                rPointer--;
             }
 
-            while (pivot >= array[low] && low < high) {
-                low++;
+            // 피벗값이 왼쪽 포인터보다 크거나 같고, 왼쪽 포인터가 오른쪽 포인터보다 작을경우 증가한다.
+            while (pivot >= array[lPointer] && lPointer < rPointer) {
+                lPointer++;
             }
 
-            swap(array, low, high);
+            // 왼쪽 포인터와 오른쪽 포인터의 값을 교환한다.
+            swap(array, lPointer, rPointer);
         }
 
-        swap(array, left, low);
+        // 피벗값과 왼쪽 포인터의 값을 교환한다.
+        swap(array, left, lPointer);
 
-        return low;
+        return lPointer;
     }
 
     /**

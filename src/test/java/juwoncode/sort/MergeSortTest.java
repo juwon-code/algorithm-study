@@ -16,7 +16,7 @@ class MergeSortTest {
         MergeSort.sort(array1);
         MergeSort.sort(array2);
 
-        assertArrayEquals(ShellSort.sort(array1), expect);
-        assertArrayEquals(ShellSort.sort(array2), expect);
+        assertArrayEquals(array1, expect);
+        assertArrayEquals(array2, expect);
     }
 }

@@ -13,7 +13,10 @@ class ShellSortTest {
         int[] array2 = new int[]{3, 4, 5, 1, 2};
         int[] expect = new int[]{1, 2, 3, 4, 5};
 
-        assertArrayEquals(ShellSort.sort(array1), expect);
-        assertArrayEquals(ShellSort.sort(array2), expect);
+        ShellSort.sort(array1);
+        ShellSort.sort(array2);
+
+        assertArrayEquals(array1, expect);
+        assertArrayEquals(array2, expect);
     }
 }

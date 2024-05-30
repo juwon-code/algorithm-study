@@ -13,8 +13,11 @@ class BubbleSortTest {
         int[] array2 = new int[]{3, 4, 5, 1, 2};
         int[] expect = new int[]{1, 2, 3, 4, 5};
 
-        assertArrayEquals(BubbleSort.sort(array1), expect);
-        assertArrayEquals(BubbleSort.sort(array2), expect);
+        BubbleSort.sort(array1);
+        BubbleSort.sort(array2);
+
+        assertArrayEquals(array1, expect);
+        assertArrayEquals(array2, expect);
     }
 
     @DisplayName("버블정렬 테스트 (개선)")
@@ -24,7 +27,10 @@ class BubbleSortTest {
         int[] array2 = new int[]{3, 4, 5, 1, 2};
         int[] expect = new int[]{1, 2, 3, 4, 5};
 
-        assertArrayEquals(BubbleSort.fasterSort(array1), expect);
-        assertArrayEquals(BubbleSort.fasterSort(array2), expect);
+        BubbleSort.fasterSort(array1);
+        BubbleSort.fasterSort(array2);
+
+        assertArrayEquals(array1, expect);
+        assertArrayEquals(array2, expect);
     }
 }

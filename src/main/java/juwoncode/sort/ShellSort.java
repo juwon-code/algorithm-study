@@ -14,10 +14,8 @@ public class ShellSort {
      * 정수 배열을 오름차순으로 셸정렬 알고리즘을 사용하여 정렬한다.
      * @param array
      *      정렬할 배열
-     * @return
-     *      오름차순으로 정렬된 배열
      */
-    public static int[] sort(int[] array) {
+    public static void sort(int[] array) {
         int length = array.length;
 
         for (int i = length / 2; i > 0; i /= 2) {
@@ -31,7 +29,5 @@ public class ShellSort {
                 array[k + i] = value;
             }
         }
-
-        return array;
     }
 }

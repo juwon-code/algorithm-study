@@ -33,22 +33,22 @@ public class MergeSort {
      */
     private static void mergeSort(int[] array, int low, int high) {
         if (low < high) {
+            // 부분 배열의 기준이 될 중간값을 구한다.
             int middle = low + ((high - low) / 2);
 
+            // 중간값을 기준으로 왼쪽 배열으로 재귀호출.
             mergeSort(array, low, middle);
+
+            // 중간값을 기준으로 오른쪽 배열으로 재귀호출.
             mergeSort(array, middle + 1, high);
 
+            // 배열을 정렬하고 반영한다.
             merge(array, low, middle, high);
         }
     }
 
     /**
      * 임시 배열에 부분 배열의 값을 사용하여 정렬하고 본 배열에 반영한다.
-     * <pre>
-     *     1. 왼쪽 부분 배열값이 오른쪽 부분배열 값을 비교하여 낮은 값부터 임시 배열에 삽입한다.
-     *     2. 부분 배열에 남은 값이 있을 경우 임시 배열에 삽입한다.
-     *     3. 정렬이 끝난 임시 배열의 값을 순서대로 본 배열에 반영한다.
-     * </pre>
      * @param array
      *      정렬할 배열
      * @param low
@@ -59,10 +59,12 @@ public class MergeSort {
      *      높은 값
      */
     private static void merge(int[] array, int low, int middle, int high) {
+        // 정렬된 부분 배열의 값을 담을 임시 배열을 생성한다.
         int[] temp = new int[high - low + 1];
         int index = 0, left = low, right = middle + 1;
 
         while (left <= middle && right <= high) {
+            // 왼쪽 부분 배열과 오른쪽 부분 배열의 값을 비교하고 낮은 값부터 임시배열에 저장한다.
             if (array[left] <= array[right]) {
                 temp[index] = array[left];
                 left++;
@@ -74,18 +76,21 @@ public class MergeSort {
             index++;
         }
 
+        // 왼쪽 부분 배열이 남아있을 경우 임시배열에 저장한다.
         while (left <= middle) {
             temp[index] = array[left];
             index++;
             left++;
         }
 
+        // 오른쪽 부분 배열이 남아있을 경우 임시배열에 저장한다.
         while (right <= high) {
             temp[index] = array[right];
             index++;
             right++;
         }
 
+        // 임시 배열의 값을 본 배열에 반영한다.
         for (int i = low; i <= high; i++) {
             array[i] = temp[i - low];
         }

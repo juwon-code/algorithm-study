@@ -13,10 +13,8 @@ public class InsertionSort {
      * 정수 배열을 오름차순으로 삽입정렬 알고리즘을 사용하여 정렬한다.
      * @param array
      *      정렬할 배열
-     * @return
-     *      오름차순으로 정렬된 배열
      */
-    public static int[] sort(int[] array) {
+    public static void sort(int[] array) {
         int length = array.length;
 
         for (int i = 1; i < length; i++) {
@@ -29,7 +27,5 @@ public class InsertionSort {
 
             array[j] = key;
         }
-
-        return array;
     }
 }
